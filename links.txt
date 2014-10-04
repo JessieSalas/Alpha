@@ -1,0 +1,29 @@
+
+
+
+TECHNICAL
+-----------------------------------
+
+PANDAS with Bloomberg API: http://stackoverflow.com/questions/18520416/pandas-wrapper-for-bloomberg-api
+
+FACEBOOK Python SDK: https://github.com/pythonforfacebook/facebook-sdk
+
+
+ACCESS User's INBOX with graph API: https://developers.facebook.com/docs/graph-api/reference/v2.1/user/inbox
+
+THEORETICAL
+------------------------
+Site that uses likes to assess personality: http://youarewhatyoulike.com/HowDoesItWork 
+
+FIVE tests your personality based on FB posts: http://www.huffingtonpost.com/2014/06/12/facebook-five-labs_n_5485489.html
+
+RESEARCH Paper about how text messaged language correlates with personality: http://www.sciencedirect.com/science/article/pii/S0092656610001698
+
+GOOD RESEARCH Paper about "Using linguistic cues for the automatic recognition of personality in conversation and text"
+
+
+
+
+
+
+
