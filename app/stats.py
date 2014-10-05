@@ -1,5 +1,6 @@
 #Does some processing, gives metrics
 import pickle
+from behavioral_analysis import *
 
 with open('sentiments.pickle', 'rb') as infile:
     sentiments = pickle.load(infile)
@@ -45,6 +46,53 @@ def getVariability(messages):
     else:
         av = 0
     return av
+
+
+
+def risk_metric(msg):
+    """
+    params:
+        not used - sleep 0 to 1, 1 is regular
+        five is result of big_five(msg) (dict of {trait : 0 to 1})
+    returns:
+        -1 to 1 metric 
+
+
+    risk seeking: male, young (<25 arbitrarily?), 
+        irregular sleep, extraverted, open
+    risk averse: neuroticism, agreeable, conscientious
+
+    note: opposing big five traits do no sum to one
+
+    see tables 8, 9: http://www.london.edu/facultyandresearch/research/docs/risk.ps.pdf
+    """
+    five = big_five(msg)
+    # this is totally statistically sound
+    total = float(sum(five.values()))
+    normed = {} 
+    for trait in five:
+        normed[trait] = five[trait]/total
+    
+    # currently arbitrary :\ 
+    risk_weights = {"disagreeable":1, 
+    "open": 1, 
+    "extraversion":1, 
+    "unconscientious":0.5, 
+    "stability":0.5,
+    "neurotic":-0.5, 
+    "agreeable":-1, 
+    "conscientious":-0.5, 
+    "introversion":-1, 
+    "closed":-1}
+
+    risk = 0.0
+
+    for trait in normed:
+        risk += normed[trait] * risk_weights[trait]
+
+    return risk
+
+
 
 def getLikeIndex(likes):
 #could be negative, or not

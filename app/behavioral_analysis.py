@@ -59,7 +59,7 @@ def big_five(msg):
 	http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783449/#pone.0073791.s002
 	"Personality, Gender, and Age in the Language of Social Media: The Open-Vocabulary Approach"
 	"""
-	PATH = "../big_five/"
+	PATH = "big_five/"
 	freqs = count_words(msg)
 	files = ["agreeableness.txt", "disagreeable.txt", "open.txt", "closed.txt",
 	"extraversion.txt", "introversion.txt", "unconscientious.txt", "conscientious.txt", 
