@@ -1,14 +1,4 @@
-<Watson>:
-    usernm: _usrnm
-    psswrd: _psswrd
-    name: _name
-    age: _age
-    gender: _gender
-    diet: _diet
-    complaint: _complaint
-    history: _history
-    discussion: _discussion
-
+<Alpha>:
     AnchorLayout:
         anchor_x: 'center'
         anchor_y: 'top'
@@ -29,11 +19,16 @@
                         font_name: 'SkarpaLt.ttf'
                         pos_hint: {'x': 0, 'y': 0.4}
                         text: "Alpha"
-                        font_size: '75dp'
+                        font_size: '85dp'
 
                     Label:
                         pos_hint: {'x': 0, 'y': 0.3}
                         text: 'Optimality for the rest of us.'
+                        font_size: '15dp'
+
+                    Label:
+                        pos_hint: {'x': 0, 'y': -0.4}
+                        text: root.Patient_message
                         font_size: '15dp'
 
                     Image:
@@ -48,11 +43,10 @@
                         size_hint: (1, 0.05)
                         pos_hint: {'x': 0, 'y': 0}
                         text: 'Login'
+                        on_press:root.waiter()
                         on_press: root.authenticate()
-                        #on_press: print( _usrnm.text + ' ' + _psswrd.text)
-                        on_press: print(root.AUTH_KEY)
-                        on_release: root.getInfo("me",root.AUTH_KEY)
                         on_release: manager.current = 'question'
+                        on_release: root.getInfo("me",root.AUTH_KEY)
 
             Screen:
                 name: 'question'
@@ -67,129 +61,25 @@
                     Label:
                         font_name: 'SkarpaLt.ttf'
                         pos_hint: {'x': 0, 'y': 0.4}
-                        text: 'Enter patient information.'
+                        text: 'Welcome, {0}!'.format(root.ME)
                         font_size: '55dp'
 
                     Label:
                         pos_hint: {'x': 0, 'y': 0.3}
-                        text: 'Logged in as {0}'.format(_usrnm.text)
+                        text: "We've calculated some personality statistics from your Facebook use."
                         font_size: '15dp'
 
-                    GridLayout:
-                        pos_hint: {'x': .25, 'y': .2}
-                        size_hint_x: .48
-                        size_hint_y: .5
-                        rows:7
-                        
-                        TextInput:
-                            id: _name
-                            hint_text: 'Name'
+                    Label:
+                        pos_hint: {'x': -.35, 'y': 0.15}
+                        text: "{0}%".format(root.SLEEP_REGULARITY * 100)
+                        font_size: '25dp'
 
-                        TextInput:
-                            id: _age
-                            hint_text: 'Age'
-
-                        TextInput:
-                            id: _gender
-                            hint_text: 'Gender'
-
-                        TextInput:
-                            id: _diet
-                            hint_text: 'Diet'
-
-                        TextInput:
-                            size_hint_y: 2
-                            id: _complaint
-                            hint_text: 'Chief Complaint'
-
-                        TextInput:
-                            size_hint_y: 2
-                            id: _history
-                            hint_text: 'Past Family History'
-
-                        TextInput:
-                            size_hint_y: 3
-                            id: _discussion
-                            hint_text: 'Discussion'
+                    Label:
+                        pos_hint: {'x': -.35, 'y': 0.2}
+                        text: "Sleep Schedule \n Consistency"
+                        font_size: '15dp'
 
                     Button:
                         size_hint: (1, 0.05)
                         pos_hint: {'x': 0, 'y': 0}
                         text: 'Continue >>'
-                        on_press: print( _usrnm.text + ' ' + _psswrd.text)
-                        on_release: manager.current = 'augmentation'
-
-            Screen:
-                name: 'augmentation'
-                GridLayout:
-                    rows: 15
-                    canvas.before:
-                        Color:
-                            rgb: (0.952941176   ,0.949019608,0.933333333)
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-                    Button:
-                        text: "(Behind the scenes)"
-                    Button:
-                        size_hint: 5,5
-                        text: "{0} is a {1}-year-old {2}. \n The patient has a history of {3}, \n and complained of {4}. \n {0} follows a diet of {5}\n Further details include: {6}. \n What is the recommended course of action?".format(_name.text, _age.text, _gender.text,_history.text, _complaint.text, _diet.text, _discussion.text)
-                    Button:
-                        text: "Continue >>"
-                        on_press: manager.current = 'FINAL'
-
-            Screen:
-                name: 'FINAL'
-                GridLayout:
-                    rows: 15
-                    canvas.before:
-                        Color:
-                            rgb: (0.952941176   ,0.949019608,0.933333333)
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-                    Button:
-                        text: "Watson responds with best course of action"
-                    Button:
-                        size_hint: 5,5
-                        text: "45% of {1}-year-old {2}s with {3}\n have been overcome by relapse of \n {5} within 10 days of release. \n Patients like this recover best when treated with [PRODECURE,]\n and follow a low sodium diet. \n Remind {0} to check in with the app regularly to keep track of recovery.".format(_name.text, _age.text, _gender.text,_history.text, _diet.text,_complaint.text, _discussion.text)
-                    Button:
-                        text: "Continue >>"
-                        on_press: manager.current = 'relanding'
-
-
-            Screen:
-                name: 'relanding'
-                FloatLayout:
-                    canvas.before:
-                        Color:
-                            rgb: (0.129411765, 0.121568627,0.125490196) 
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-
-                    Label:
-                        font_name: 'SkarpaLt.ttf'
-                        pos_hint: {'x': 0, 'y': 0.4}
-                        text: "Watson M.D."
-                        font_size: '75dp'
-
-                    Label:
-                        pos_hint: {'x': 0, 'y': 0.3}
-                        text: 'At your service.'
-                        font_size: '15dp'
-
-                    Image:
-                        source: 'medi3Watson.png'
-                        pos_hint: {'x': 0.3, 'y': 0.3}
-                        size_hint: (0.4, 0.4)
-                        allow_stretch: True
-
-                    Button:
-                        size_hint: (1, 0.05)
-                        pos_hint: {'x': 0, 'y': 0}
-                        text: 'Begin'
-                        on_press: print( _usrnm.text + ' ' + _psswrd.text)
-                        on_release: manager.current = 'question'
-
-
