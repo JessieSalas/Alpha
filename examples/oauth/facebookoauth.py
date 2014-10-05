@@ -27,8 +27,8 @@ as it handles some complex authentication states that can only be detected
 in client-side code.
 """
 
-FACEBOOK_APP_ID = "your app id"
-FACEBOOK_APP_SECRET = "your app secret"
+FACEBOOK_APP_ID = "432563250143448"
+FACEBOOK_APP_SECRET = "f66ac09131f938a46a706a5575fedf38" 
 
 import base64
 import cgi
@@ -41,6 +41,7 @@ import os.path
 import time
 import urllib
 import wsgiref.handlers
+import os
 
 from django.utils import simplejson as json
 from google.appengine.ext import db
