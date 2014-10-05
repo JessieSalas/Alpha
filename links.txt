@@ -14,6 +14,8 @@ ACCESS User's INBOX with graph API: https://developers.facebook.com/docs/graph-a
 THEORETICAL
 ------------------------
 Site that uses likes to assess personality: http://youarewhatyoulike.com/HowDoesItWork 
+http://www-psych.stanford.edu/~knutson/bad/kosinski13.pdf
+
 
 FIVE tests your personality based on FB posts: http://www.huffingtonpost.com/2014/06/12/facebook-five-labs_n_5485489.html
 
@@ -22,7 +24,14 @@ RESEARCH Paper about how text messaged language correlates with personality: htt
 GOOD RESEARCH Paper about "Using linguistic cues for the automatic recognition of personality in conversation and text"
 
 
+The Relation between Five-Factor Personality Traits and Risk-Taking Behavior in Preadolescents
+http://www.scirp.org/journal/PaperInformation.aspx?PaperID=21817
 
+
+Risk Propensity and Personality <<< this one
+http://www.london.edu/facultyandresearch/research/docs/risk.ps.pdf
+Table 8 shows:
+SEM multiple regressions of personality factors on Risk Propensity Scale and domain subscales
 
 
 
