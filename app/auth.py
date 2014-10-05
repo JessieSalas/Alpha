@@ -8,8 +8,8 @@ import urlparse
 import BaseHTTPServer
 import webbrowser
  
-APP_ID = '432563250143448'
-APP_SECRET = 'f66ac09131f938a46a706a5575fedf38'
+APP_ID = '344753635692608'
+APP_SECRET = '480bcc7ed8fb455a463992d9d255f8d7'
 ENDPOINT = 'graph.facebook.com'
 REDIRECT_URI = 'http://localhost:8080/'
 ACCESS_TOKEN = None
