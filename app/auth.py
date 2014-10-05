@@ -1,4 +1,5 @@
 #!/usr/bin/python2.6
+#This file gets authentication. It's main function is getAuth() returns string
 import os.path
 import json
 import urllib2
@@ -48,33 +49,20 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         ACCESS_TOKEN = urlparse.parse_qs(response)['access_token'][0]
         open(LOCAL_FILE,'w').write(ACCESS_TOKEN)
         self.wfile.write("You have successfully logged in to facebook. "
-                         "You can close this window now.")
- 
-def print_status(item, color=u'\033[1;35m'):
+                         "We'll take it from here.")
+def getAuth():
     global ACCESS_TOKEN
-    try:
-        print color+STATUS_TEMPLATE.format(name=item['from']['name'],message=item['message'].strip())
-        print ACCESS_TOKEN
-    except:
-        print "nop"
- 
-if __name__ == '__main__':
     if not os.path.exists(LOCAL_FILE):
         print "Logging you in to facebook..."
         webbrowser.open(get_url('/oauth/authorize',
                                 {'client_id':APP_ID,
                                  'redirect_uri':REDIRECT_URI,
-                                 'scope':'read_stream'}))
+                                 'scope':'read_mailbox,user_status,user_likes'}))
  
         httpd = BaseHTTPServer.HTTPServer(('localhost', 8080), RequestHandler)
         while ACCESS_TOKEN is None:
             httpd.handle_request()
     else:
         ACCESS_TOKEN = open(LOCAL_FILE).read()
-    for item in json.loads(get('/me/feed'))['data']:
-        if item['type'] == 'status':
-            print_status(item)
-            if 'comments' in item:
-                for comment in item['comments']['data']:
-                    print_status(comment, color=u'\033[1;33m')
-            print '---'
+    return ACCESS_TOKEN
+

@@ -6,29 +6,46 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-from kivy.properties import StringProperty, NumericProperty, BooleanProperty
+from kivy.properties import StringProperty, NumericProperty, BooleanProperty, ObjectProperty
 
 import facebook
+from auth import *
 
 class Watson(FloatLayout):
 
-    def list_notebooks(self):
-        notes = self.get_notebooks()
-        with self.canvas:
-            layout = GridLayout(rows = len(notes))
-            layout.size = self.size
-            for note in notes:
-                bot = Button(text=note,pos_hint_x = .7, width=100)
-                bot.bind(on_press=self.lame)
-                layout.add_widget(bot)
+    AUTH_KEY = StringProperty()
+    MESSAGES = ObjectProperty()
+    ME = "Jessie Salas"
 
-    def getLikes(self, user, key):
+    def authenticate(self):
+        self.AUTH_KEY = getAuth()
+
+    def getInfo(self, user, key):
         graph = facebook.GraphAPI(key)
         profile = graph.get_object(user)
-        posts = graph.get_connections(profile['id'], 'posts')
-        print(posts)
-
-
+        self.MESSAGES = graph.get_connections(profile['id'], 'outbox')
+        self.MESSAGES = graph.get_connections(profile['id'], 'posts')
+        exec("self.MESSAGES = {0}".format(self.MESSAGES)) #execute into python dictionary
+        message_corpus=""
+        for thing in self.MESSAGES['data']:
+            #print thing
+            for i in thing['comments']['data']:
+                if 'from' in i.keys() and 'message' in i.keys():
+                    if i['from']['name'] == self.ME:
+                        message_corpus += i['message']
+        print(message_corpus)
+"""
+                    try: 
+                        if 'comments' in i['message'].keys():
+                            #print i['message']['comments']
+                            pass
+                    except:
+                        #print i['message']
+                        pass
+                else:
+                    print i['from']
+"""
+                    
 class Interface(App):
     def build(self):
         self.Instance = Watson()

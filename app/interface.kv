@@ -37,30 +37,21 @@
                         font_size: '15dp'
 
                     Image:
-                        source: 'medi3Watson.png'
+                        source: 'img/brain.png'
                         pos_hint: {'x': 0.3, 'y': 0.3}
                         size_hint: (0.4, 0.4)
                         allow_stretch: True
 
-                    GridLayout:
-                        pos_hint: {'x': .35, 'y': .15}
-                        size_hint_x: .3
-                        size_hint_y: .1
-                        rows:2
-                        TextInput:
-                            id: _usrnm
-                            hint_text: 'username'
-
-                        TextInput:
-                            id: _psswrd
-                            hint_text: 'password'
-                            password: True
                     Button:
+                        background_color: (0.364705882,0.637254902,0.823529412,1)
+                        background_normal: ''
                         size_hint: (1, 0.05)
                         pos_hint: {'x': 0, 'y': 0}
                         text: 'Login'
-                        on_press: print( _usrnm.text + ' ' + _psswrd.text)
-                        on_release: root.getLikes("me",'CAACEdEose0cBAC42fusMo0aFQT9HnrWKtLvCNLBCLRg74qOPndUBsZBkSz3L7F98t44RSydtYq9js78DgUP8CQY8KtLtZAnZCUfMZAx8Ch1ywQY9l1qZBm8Xi5LDeHPUwOnfWB4uUFalO7AiiodvsmPVxEmufj28PVlRLXHeZCYTpJjZCN6gBYaB67Mom8Ls9IH9Wb2AmonERuHKJZCZBAdMe8QBVJYddNSkZD')
+                        on_press: root.authenticate()
+                        #on_press: print( _usrnm.text + ' ' + _psswrd.text)
+                        on_press: print(root.AUTH_KEY)
+                        on_release: root.getInfo("me",root.AUTH_KEY)
                         on_release: manager.current = 'question'
 
             Screen:
